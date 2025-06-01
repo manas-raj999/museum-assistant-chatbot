@@ -3,108 +3,114 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>🖼️ Welcome to the Museum Assistant</h1>
-      <p style={styles.subtitle}>
-        Discover exhibits, ask questions, and book your tickets seamlessly!
-      </p>
+    <div style={styles.wrapper}>
+      <div style={styles.hero}>
+        <h1 style={styles.title}>
+          Welcome to <span style={styles.gradientText}>Museum Assistant</span>
+        </h1>
+        <p style={styles.subtitle}>
+          Explore. Interact. Experience.
+        </p>
 
-      <div style={styles.buttonContainer}>
-        <Link to="/chat" style={styles.button}>💬 Chat with Assistant</Link>
-        <Link to="/book" style={{ ...styles.button, backgroundColor: '#34a853' }}>
-          🎟️ Book Tickets
-        </Link>
+        <div style={styles.buttons}>
+          <Link to="/chat" style={{ ...styles.button, ...styles.chatButton }}>
+            💬 Talk to Assistant
+          </Link>
+          <Link to="/book" style={{ ...styles.button, ...styles.bookButton }}>
+            🎟️ Book Tickets
+          </Link>
+        </div>
       </div>
 
-      <div style={styles.imageContainer}>
+      <div style={styles.card}>
         <img
           src="https://images.unsplash.com/photo-1601981211022-0e3f3fbb0b06"
-          alt="Museum Art"
+          alt="Museum"
           style={styles.image}
         />
+        <p style={styles.cardText}>
+          “Museums are where memories and history collide with curiosity.”
+        </p>
       </div>
     </div>
   );
 };
 
 const styles = {
-  container: {
+  wrapper: {
+    fontFamily: `'Poppins', sans-serif`,
+    background: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+    minHeight: '100vh',
+    padding: '2rem 1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  hero: {
     textAlign: 'center',
-    padding: '2rem',
-    fontFamily: 'Segoe UI, sans-serif',
-    backgroundColor: '#f7f9fc',
-    minHeight: '80vh',
-    maxWidth: '1200px',
-    margin: 'auto',
+    animation: 'fadeIn 1s ease-in',
   },
   title: {
-    fontSize: '2.5rem',
+    fontSize: '3rem',
+    marginBottom: '1rem',
     color: '#2c3e50',
-    margin: '0 1rem',
+  },
+  gradientText: {
+    background: 'linear-gradient(45deg, #4a90e2, #9b59b6)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    fontWeight: 'bold',
   },
   subtitle: {
     fontSize: '1.2rem',
-    margin: '1rem 1rem 2rem',
     color: '#555',
+    marginBottom: '2rem',
   },
-  buttonContainer: {
+  buttons: {
     display: 'flex',
     justifyContent: 'center',
     gap: '1rem',
     flexWrap: 'wrap',
-    marginBottom: '2rem',
   },
   button: {
-    padding: '0.8rem 1.5rem',
+    padding: '0.9rem 1.7rem',
     fontSize: '1rem',
-    backgroundColor: '#4a90e2',
-    color: '#fff',
-    borderRadius: '8px',
+    border: 'none',
+    borderRadius: '50px',
     textDecoration: 'none',
-    transition: 'all 0.3s ease',
-    minWidth: '140px',
-    textAlign: 'center',
+    color: '#fff',
+    boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
   },
-  imageContainer: {
-    marginTop: '2rem',
+  chatButton: {
+    background: 'linear-gradient(45deg, #00c6ff, #0072ff)',
+  },
+  bookButton: {
+    background: 'linear-gradient(45deg, #00b09b, #96c93d)',
+  },
+  card: {
+    marginTop: '3rem',
+    maxWidth: '700px',
+    background: 'rgba(255, 255, 255, 0.75)',
+    borderRadius: '20px',
+    padding: '1.5rem',
+    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.1)',
+    backdropFilter: 'blur(12px)',
+    textAlign: 'center',
+    animation: 'fadeIn 2s ease-in',
   },
   image: {
-    maxWidth: '100%',
+    width: '100%',
     borderRadius: '15px',
-    boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+    marginBottom: '1rem',
+    objectFit: 'cover',
+    maxHeight: '350px',
   },
-
-  // Media queries via JS - inline styles can't directly do this,
-  // so we'll do a quick workaround with a style tag inside component:
+  cardText: {
+    fontStyle: 'italic',
+    color: '#333',
+    fontSize: '1rem',
+  },
 };
 
-// Responsive styles using a style tag with media queries
-const ResponsiveStyles = () => (
-  <style>{`
-    @media (max-width: 768px) {
-      .buttonContainer {
-        flex-direction: column !important;
-        align-items: center;
-      }
-      .buttonContainer > a {
-        width: 80% !important;
-        margin-bottom: 1rem !important;
-      }
-      h1 {
-        font-size: 2rem !important;
-      }
-      p {
-        font-size: 1rem !important;
-      }
-    }
-  `}</style>
-);
-
-export default function HomeWithResponsive() {
-  return (
-    <>
-      <ResponsiveStyles />
-      <Home />
-    </>
-  );
-}
+export default Home;
