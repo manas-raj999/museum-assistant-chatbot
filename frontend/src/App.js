@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar'; // Adjust path if needed
 import ChatBox from './components/ChatBox';
 import TicketBookingForm from './components/TicketBooking';
-import Home from './components/Home';
+import Home from './components/home';
 
 
 function App() {

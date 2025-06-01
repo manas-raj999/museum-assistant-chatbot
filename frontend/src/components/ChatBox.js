@@ -18,8 +18,8 @@ const ChatBox = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/chat`, { message: input.trim() });
-      const botReply = { text: response.data.reply, sender: 'bot' };
+      const response = await axios.post(`${API_BASE_URL}/get`, new URLSearchParams({ msg: input.trim() }));
+      const botReply = { text: response.data, sender: 'bot' }; // Adjusted to match the response structure
       setMessages(prev => [...prev, botReply]);
     } catch (error) {
       const botReply = { text: 'Sorry, there was an error connecting to the chatbot service.', sender: 'bot' };
